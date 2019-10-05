@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+</head>
+<body>
+
+    <style>
+        body{
+            margin-top: 70px;
+        }
+
+        .card{
+            min-height: 100px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-4 text-center">
+                    <span class="text-danger"><i class="fas fa-temperature-low"></i></span>
+                    Temperature Converter
+                </h1>
+
+                <form>
+                    <div class="form-group row">
+                        <input id="value" class="form-control col-10" type="number" placeholder="0">
+                        <select id="temp" class="col-2 form-control">
+                            <option value="Celcius">Celcius</option>
+                            <option value="Kelvin">Kelvin</option>
+                            <option value="Fahrenheit">Fahrenheit</option>
+                            <option value="Reamur">Reamur</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            
+            <button id="calc" onclick="calc()" class="btn btn-primary col-md-12">Calculate</button>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4 card"><h4 id="conv1" class="text-center mt-4">conv 1</h4><p class="text-center" id="res1">0</p></div>
+            <div class="col-4 card"><h4 id="conv2" class="text-center mt-4">conv 2</h4><p class="text-center" id="res2">0</p></div>
+            <div class="col-4 card"><h4 id="conv3" class="text-center mt-4">conv 3</h4><p class="text-center" id="res3">0</p></div>
+        </div>
+    </div>
+
+    <script>
+
+        
+        function calc(){
+            let value = document.querySelector("#value").value;
+            let temp = document.querySelector("#temp").value;
+            let conv1 = document.querySelector("#conv1");
+            let conv2 = document.querySelector("#conv2");
+            let conv3 = document.querySelector("#conv3");
+            let res = [document.querySelector("#res1"), document.querySelector("#res2"), document.querySelector("#res3")]
+            
+            if(temp === "Celcius"){
+                conv1.innerHTML = "Fahrenheit";
+                res[0].innerHTML = (value*9/5) +32;
+                conv2.innerHTML = "Reamur";
+                res[1].innerHTML = (value*4/5);
+                conv3.innerHTML = "Kelvin";
+                res[2].innerHTML = (value*1)+273;
+            }else if(temp === "Fahrenheit"){
+                conv1.innerHTML = "Celcius";
+                res[0].innerHTML = 5/9*(value-32);
+                conv2.innerHTML = "Reamur";
+                res[1].innerHTML = 4/9*(value - 32);
+                conv3.innerHTML = "Kelvin";
+                res[2].innerHTML = value;
+            }else if(temp === "Reamur"){
+                conv1.innerHTML = "Celcius";
+                res[0].innerHTML = value*5/4;
+                conv2.innerHTML = "Fahrenheit";
+                res[1].innerHTML = (value*9/4) + 32;
+                conv3.innerHTML = "Kelvin";
+                res[2].innerHTML = (value*5/4) +273;
+            }else if(temp === "Kelvin"){
+                conv1.innerHTML = "Celcius";
+                res[0].innerHTML = value-273;
+                conv2.innerHTML = "Reamur";
+                res[1].innerHTML = (value-273)*4/5;
+                conv3.innerHTML = "Fahrenheit";
+                res[2].innerHTML = value*1;
+            }
+        }
+            
+            
+        
+    </script>
+    
+</body>
+</html>
